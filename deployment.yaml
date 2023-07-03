@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: flaskapp-jly3
-        image: nwajienelson/flaskapp-jly3:3
+        image: nwajienelson/flaskapp-jly3:4
         ports:
         - containerPort: 5000
         resources:
