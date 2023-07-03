@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp-jly3
+  labels:
+    app: flaskapp-jly3
+  namespace: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapp-jly3
+  template:
+    metadata:
+      labels:
+        app: flaskapp-jly3
+    spec:
+      containers:
+      - name: flaskapp-jly3
+        image: nwajienelson/flaskapp-jly3
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "80m"
+          limits:
+            memory: "110Mi"
+            cpu: "90m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskappsvc-jly3
+  namespace: frontend
+spec:
+  selector:
+    app: flaskapp-jly3
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 5000
+  
+   
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: flaskapphpa-jly3
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: flaskapp-jly3
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+
+
