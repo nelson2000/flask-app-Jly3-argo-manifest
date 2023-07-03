@@ -6,7 +6,7 @@ metadata:
     app: flaskapp-jly3
   namespace: frontend
 spec:
-  replicas: 6
+  replicas: 2
   selector:
     matchLabels:
       app: flaskapp-jly3
