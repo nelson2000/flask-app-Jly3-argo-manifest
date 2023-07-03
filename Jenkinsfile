@@ -4,7 +4,7 @@ node {
 
         stage("clone repository") {
             
-            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nelson2000/ms-python-flask-sample.git']])
+            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nelson2000/flask-app-Jly3-argo-manifest.git']])
         }
 
 
